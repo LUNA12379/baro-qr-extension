@@ -31,4 +31,7 @@ for (const [name, license] of [["qrcode", "license"], ["dijkstrajs", "LICENSE.md
 }
 await writeFile(new URL("THIRD_PARTY_NOTICES.txt", extension), notices.join("\n\n"));
 await copyFile(new URL("README.md", root), new URL("설치방법.md", extension));
+await copyFile(new URL("LICENSE", root), new URL("LICENSE.txt", extension));
+await copyFile(new URL("NOTICE", root), new URL("NOTICE.txt", extension));
+await copyFile(new URL("SOURCE.md", root), new URL("SOURCE.md", extension));
 console.log("바로 QR 빌드 완료: extension 폴더를 브라우저에 로드하세요.");

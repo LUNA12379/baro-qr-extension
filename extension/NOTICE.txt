@@ -1,0 +1,20 @@
+Baro QR — 바로 QR
+Copyright (C) 2026 LUNA12379
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 3 only,
+as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. See LICENSE in the source repository or
+LICENSE.txt in the extension distribution.
+
+The bundled qrcode and dijkstrajs libraries retain their respective
+MIT licenses and copyright notices in THIRD_PARTY_NOTICES.txt.
+
+Project and contact: https://github.com/LUNA12379/baro-qr-extension

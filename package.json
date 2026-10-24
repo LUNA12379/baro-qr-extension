@@ -1,6 +1,7 @@
 {
   "name": "baro-qr-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "license": "GPL-3.0-only",
   "private": true,
   "type": "module",
   "scripts": {

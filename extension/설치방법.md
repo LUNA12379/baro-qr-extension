@@ -56,4 +56,14 @@ npm run build
 
 참고: [Chrome 로컬 확장 프로그램 설치](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked), [activeTab 권한](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab), [node-qrcode](https://github.com/soldair/node-qrcode).
 
-번들에 포함된 오픈소스 라이선스는 [`extension/THIRD_PARTY_NOTICES.txt`](https://github.com/LUNA12379/baro-qr-extension/blob/main/extension/THIRD_PARTY_NOTICES.txt)에 있습니다.
+## 라이선스
+
+Copyright (C) 2026 LUNA12379. 이 프로젝트는 **GNU GPL 버전 3만** 적용됩니다. SPDX 식별자는 `GPL-3.0-only`입니다. 상업적 이용, 수정 및 재배포가 가능하며, 수정본을 배포할 때는 GPL-3.0에 따라 해당 소스를 제공하고 동일 라이선스를 유지해야 합니다. 어떠한 보증도 제공되지 않습니다.
+
+- [라이선스 전문](https://github.com/LUNA12379/baro-qr-extension/blob/main/LICENSE)
+- [프로젝트 저작권 및 라이선스 고지](https://github.com/LUNA12379/baro-qr-extension/blob/main/NOTICE)
+- [해당 버전의 전체 소스와 빌드 안내](https://github.com/LUNA12379/baro-qr-extension/blob/main/SOURCE.md)
+
+설치용 ZIP에도 `LICENSE.txt`, `NOTICE.txt`, `SOURCE.md`와 라이선스 안내 화면이 포함됩니다. 팝업 아래의 **GPL-3.0** 링크에서 확인할 수 있습니다. 이 라이선스는 확장 프로그램 코드에 적용되며, 생성된 QR 이미지나 그 안의 웹사이트 콘텐츠에 GPL을 부여하는 것은 아닙니다.
+
+번들에 포함된 `qrcode`와 `dijkstrajs`는 원래 MIT 라이선스를 유지하며, 각각의 저작권 및 라이선스 고지는 [`extension/THIRD_PARTY_NOTICES.txt`](https://github.com/LUNA12379/baro-qr-extension/blob/main/extension/THIRD_PARTY_NOTICES.txt)에 있습니다.

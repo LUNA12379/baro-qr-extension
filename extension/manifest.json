@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "바로 QR — 웹사이트 즉석 QR 생성기",
   "short_name": "바로 QR",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "보고 있는 웹사이트를 한 번에 QR코드로. 외부 전송 없이 생성하고 PNG로 저장하세요.",
   "permissions": ["activeTab"],
   "action": {

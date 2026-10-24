@@ -59,6 +59,8 @@ textarea[aria-invalid="true"] { border-color: #c98b77; }
 .button:active:not(:disabled) { transform: translateY(1px); }
 footer { justify-content: center; gap: 5px; margin-top: 10px; color: #92998b; font-size: 9px; }
 footer svg { width: 12px; height: 12px; }
+.license-link { color: #69765f; text-underline-offset: 2px; }
+.license-link:focus-visible { outline: 2px solid #a4b89c; outline-offset: 2px; }
 @media (max-height: 580px) {
   .popup { padding-top: 12px; padding-bottom: 10px; }
   .brand img { width: 24px; height: 24px; }
