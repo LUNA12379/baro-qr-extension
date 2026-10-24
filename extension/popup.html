@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
     <title>바로 QR</title>
     <link rel="icon" href="icons/icon32.png">
     <link rel="stylesheet" href="popup.css">
@@ -17,51 +17,90 @@
           <img src="icons/icon48.png" alt="" width="30" height="30">
           <span>바로 <strong>QR</strong></span>
         </div>
-        <span class="local-badge"><span class="local-dot"></span> 기기 내 생성</span>
+        <span class="local-badge"><span class="local-dot"></span> 기기 안에서만</span>
       </header>
 
-      <section class="intro" aria-labelledby="heading">
-        <h1 id="heading">이 페이지, 휴대폰으로.</h1>
-        <p>카메라를 비추면 바로 열려요.</p>
-      </section>
+      <div class="mode-tabs" role="tablist" aria-label="QR 기능">
+        <button id="create-tab" type="button" role="tab" aria-selected="true" aria-controls="create-panel">QR 만들기</button>
+        <button id="scan-tab" type="button" role="tab" aria-selected="false" aria-controls="scan-panel" tabindex="-1">QR 이미지 읽기</button>
+      </div>
 
-      <section class="qr-card" aria-label="생성된 QR코드">
-        <div class="qr-stage" aria-busy="true">
-          <canvas id="qr-canvas" role="img" aria-label="웹사이트 QR코드" hidden></canvas>
-          <div id="empty-state" class="empty-state">
-            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M17 7H7v10m24-10h10v10M7 31v10h10m24-10v10H31" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M17 17h5v5h-5zm10 0h5v5h-5zm-10 10h5v5h-5zm10 0h5v5h-5z" fill="currentColor"/></svg>
-            <p id="empty-message">페이지 주소를 불러오는 중…</p>
+      <section id="create-panel" role="tabpanel" aria-labelledby="create-tab">
+        <section class="intro" aria-labelledby="heading">
+          <h1 id="heading">이 페이지, 휴대폰으로.</h1>
+        </section>
+
+        <section class="qr-card" aria-label="생성된 QR코드">
+          <div class="qr-stage" aria-busy="true">
+            <canvas id="qr-canvas" role="img" aria-label="웹사이트 QR코드" hidden></canvas>
+            <div id="empty-state" class="empty-state">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M17 7H7v10m24-10h10v10M7 31v10h10m24-10v10H31" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M17 17h5v5h-5zm10 0h5v5h-5zm-10 10h5v5h-5zm10 0h5v5h-5z" fill="currentColor"/></svg>
+              <p id="empty-message">페이지 주소를 불러오는 중…</p>
+            </div>
           </div>
-        </div>
-        <div class="site-info">
-          <span id="qr-status" class="qr-status">준비 중</span>
-          <p id="site-domain" class="site-domain">웹사이트를 연결하세요</p>
-          <p id="site-title" class="site-title">주소를 입력하면 QR코드가 나타나요.</p>
-        </div>
-      </section>
+          <div class="site-info">
+            <span id="qr-status" class="qr-status">준비 중</span>
+            <p id="site-domain" class="site-domain">웹사이트를 연결하세요</p>
+            <p id="site-title" class="site-title">주소를 입력하면 QR코드가 나타나요.</p>
+          </div>
+        </section>
 
-      <div class="address-section">
-        <div class="field-heading">
-          <label for="url-input">페이지 주소</label>
-          <button id="reset-button" class="text-button" type="button" disabled>
-            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 6a5 5 0 1 1 0 4M3 2v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            현재 탭
+        <div class="address-section">
+          <div class="field-heading">
+            <label for="url-input">페이지 주소</label>
+            <button id="reset-button" class="text-button" type="button" disabled>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 6a5 5 0 1 1 0 4M3 2v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              현재 탭
+            </button>
+          </div>
+          <textarea id="url-input" rows="2" placeholder="https://example.com" aria-describedby="feedback" spellcheck="false" autocomplete="off" autocapitalize="off" inputmode="url"></textarea>
+          <p id="feedback" class="feedback" role="status" aria-live="polite">주소를 불러오고 있어요.</p>
+        </div>
+
+        <div class="actions create-actions">
+          <button id="copy-image-button" class="button button-primary" type="button" disabled>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/><path d="m4 15 4-4 3 2 3-4 3 4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span id="copy-image-label">이미지 복사</span>
+          </button>
+          <button id="save-button" class="button button-secondary" type="button" disabled>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            PNG 저장
+          </button>
+          <button id="copy-button" class="button button-secondary" type="button" disabled>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M12 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span id="copy-label">주소 복사</span>
           </button>
         </div>
-        <textarea id="url-input" rows="2" placeholder="https://example.com" aria-describedby="feedback" spellcheck="false" autocomplete="off" autocapitalize="off" inputmode="url"></textarea>
-        <p id="feedback" class="feedback" role="status" aria-live="polite">주소를 불러오고 있어요.</p>
-      </div>
+      </section>
 
-      <div class="actions">
-        <button id="save-button" class="button button-primary" type="button" disabled>
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          PNG 저장
+      <section id="scan-panel" role="tabpanel" aria-labelledby="scan-tab" hidden>
+        <div class="intro">
+          <h1>이미지 속 QR을 읽어요.</h1>
+        </div>
+        <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/x-ms-bmp" hidden>
+        <button id="image-picker" class="image-picker" type="button" aria-describedby="scan-help scan-feedback" aria-busy="false">
+          <img id="image-preview" alt="선택한 QR 이미지" hidden>
+          <span id="scan-placeholder" class="scan-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="7" y="7" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="3" fill="currentColor"/><path d="m9 35 10-10 7 6 7-12 8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <strong>이미지를 선택하거나 끌어놓기</strong>
+            <span>Ctrl+V · Mac은 ⌘V로 붙여넣기도 가능</span>
+          </span>
+          <span id="scan-filename" class="scan-filename">이미지 선택</span>
         </button>
-        <button id="copy-button" class="button button-secondary" type="button" disabled>
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M12 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span id="copy-label">주소 복사</span>
-        </button>
-      </div>
+        <p id="scan-help" class="scan-help">PNG · JPG · WebP · GIF · BMP / 최대 10MB<br>QR 하나가 선명하게 보이는 이미지를 넣어 주세요.</p>
+        <p id="scan-feedback" class="feedback scan-feedback" role="status" aria-live="polite">이미지는 외부로 전송하거나 저장하지 않아요.</p>
+        <div id="scan-result" hidden>
+          <div class="field-heading">
+            <label for="scan-text">읽은 내용</label>
+            <span id="scan-type" class="result-type"></span>
+          </div>
+          <textarea id="scan-text" rows="3" readonly spellcheck="false" aria-describedby="scan-feedback"></textarea>
+          <div class="actions scan-actions">
+            <button id="copy-result" class="button button-secondary" type="button" disabled>내용 복사</button>
+            <a id="open-result" class="button button-primary" target="_blank" rel="noopener noreferrer" hidden>링크 열기 ↗</a>
+          </div>
+        </div>
+      </section>
 
       <footer>
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2 3 4v4c0 3 5 5 5 5s5-2 5-5V4L8 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="m5.5 7.5 1.7 1.7 3.3-3.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>

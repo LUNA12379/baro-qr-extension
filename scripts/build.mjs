@@ -8,8 +8,8 @@ const extension = new URL("extension/", root);
 await mkdir(new URL("icons/", extension), { recursive: true });
 await build({
   absWorkingDir: fileURLToPath(root),
-  entryPoints: ["src/popup.js"],
-  outfile: "extension/popup.js",
+  entryPoints: ["src/popup.js", "src/background.js", "src/qr-reader.worker.js"],
+  outdir: "extension",
   bundle: true,
   platform: "browser",
   target: "chrome110",
@@ -26,10 +26,10 @@ for (const size of [16, 32, 48, 128]) {
 }
 
 const notices = [];
-for (const [name, license] of [["qrcode", "license"], ["dijkstrajs", "LICENSE.md"]]) {
-  notices.push(`${name}\n${await readFile(new URL(`node_modules/${name}/${license}`, root), "utf8")}`);
+for (const [name, license] of [["qrcode", "license"], ["dijkstrajs", "LICENSE.md"], ["jsqr", "LICENSE"]]) {
+  notices.push(`${name}\n${(await readFile(new URL(`node_modules/${name}/${license}`, root), "utf8")).trimEnd()}`);
 }
-await writeFile(new URL("THIRD_PARTY_NOTICES.txt", extension), notices.join("\n\n"));
+await writeFile(new URL("THIRD_PARTY_NOTICES.txt", extension), `${notices.join("\n\n")}\n`);
 await copyFile(new URL("README.md", root), new URL("설치방법.md", extension));
 await copyFile(new URL("LICENSE", root), new URL("LICENSE.txt", extension));
 await copyFile(new URL("NOTICE", root), new URL("NOTICE.txt", extension));

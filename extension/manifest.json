@@ -2,9 +2,12 @@
   "manifest_version": 3,
   "name": "바로 QR — 웹사이트 즉석 QR 생성기",
   "short_name": "바로 QR",
-  "version": "1.0.1",
-  "description": "보고 있는 웹사이트를 한 번에 QR코드로. 외부 전송 없이 생성하고 PNG로 저장하세요.",
-  "permissions": ["activeTab"],
+  "version": "1.1.0",
+  "description": "웹사이트와 링크를 QR코드로 만들고, 이미지를 복사하거나 QR 사진을 읽으세요. 모든 처리는 기기 안에서 진행됩니다.",
+  "permissions": ["activeTab", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_title": "이 페이지를 QR코드로 열기",
     "default_popup": "popup.html",
@@ -22,6 +25,6 @@
     "128": "icons/icon128.png"
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    "extension_pages": "default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
   }
 }

@@ -14,7 +14,8 @@ You should have received a copy of the GNU General Public License
 along with this program. See LICENSE in the source repository or
 LICENSE.txt in the extension distribution.
 
-The bundled qrcode and dijkstrajs libraries retain their respective
-MIT licenses and copyright notices in THIRD_PARTY_NOTICES.txt.
+The bundled qrcode and dijkstrajs libraries retain their MIT licenses.
+The bundled jsqr library retains its Apache License, Version 2.0.
+Their original licenses and notices are in THIRD_PARTY_NOTICES.txt.
 
 Project and contact: https://github.com/LUNA12379/baro-qr-extension
