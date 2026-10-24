@@ -1,0 +1,7 @@
+node_modules/
+.verification/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
