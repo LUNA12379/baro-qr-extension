@@ -1,0 +1,35 @@
+:root {
+  font-family: "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: #263b20;
+  background: #f4f5ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
+.screenshot { width: 1280px; height: 800px; padding: 48px 88px; overflow: hidden; background: radial-gradient(ellipse at 90% 75%, #dce8cd 0, transparent 55%), #f4f5ef; }
+.masthead, .brand, .pagination, .promo-brand { display: flex; align-items: center; }
+.masthead { justify-content: space-between; }
+.brand { gap: 12px; font-size: 23px; font-weight: 700; letter-spacing: -1px; }
+.brand img { border-radius: 12px; }
+.eyebrow { color: #748268; font-size: 13px; letter-spacing: .3px; }
+.layout { display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 72px; height: 644px; margin-top: 20px; }
+.copy { padding-bottom: 8px; }
+.category { display: inline-block; padding: 8px 13px; border-radius: 6px; background: #e0e9d4; color: #4c663c; font-size: 13px; font-weight: 700; }
+h1 { margin: 22px 0 20px; font-size: 47px; font-weight: 750; line-height: 1.3; letter-spacing: -2.7px; white-space: pre-line; word-break: keep-all; }
+.description { margin: 0; color: #65735b; font-size: 17px; line-height: 1.85; white-space: pre-line; word-break: keep-all; }
+.features { display: flex; flex-wrap: wrap; gap: 9px; list-style: none; margin: 27px 0 0; padding: 0; }
+.features li { padding: 9px 12px; border: 1px solid #d6decb; border-radius: 8px; background: #fafbf7; color: #526547; font-size: 12px; font-weight: 600; }
+.privacy { margin: 29px 0 0; color: #7b8971; font-size: 13px; }
+.pagination { margin-top: 66px; gap: 12px; color: #87927f; font-size: 11px; letter-spacing: 1px; }
+.pagination .rule { width: 72px; height: 1px; background: #becbb1; }
+.app-preview { justify-self: center; padding: 10px; border: 1px solid #d8dfcf; border-radius: 26px; background: #fcfdf9; box-shadow: 0 20px 50px #344b2c16; }
+iframe { display: block; border: 0; border-radius: 17px; background: #f5f6f2; }
+.promo { width: 440px; height: 280px; padding: 30px 36px; overflow: hidden; background: radial-gradient(ellipse at 100% 100%, #cdddba 0, transparent 65%), #f4f5ef; }
+.promo-brand { gap: 13px; font-size: 24px; font-weight: 700; letter-spacing: -1px; }
+.promo-brand img { border-radius: 17px; }
+.promo h1 { margin: 17px 0 9px; font-size: 38px; letter-spacing: -2px; line-height: 1.25; }
+.promo p { margin: 0; color: #697c5a; font-size: 13px; letter-spacing: .4px; }

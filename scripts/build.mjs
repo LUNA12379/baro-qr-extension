@@ -19,10 +19,11 @@ await build({
 });
 
 for (const size of [16, 32, 48, 128]) {
-  await sharp(fileURLToPath(new URL("assets/icon.svg", root)))
-    .resize(size, size)
-    .png()
-    .toFile(fileURLToPath(new URL(`icons/icon${size}.png`, extension)));
+  const artworkSize = size === 128 ? 96 : size;
+  const padding = (size - artworkSize) / 2;
+  const icon = sharp(fileURLToPath(new URL("assets/icon.svg", root))).resize(artworkSize, artworkSize);
+  if (padding) icon.extend({ top: padding, bottom: padding, left: padding, right: padding, background: { r: 0, g: 0, b: 0, alpha: 0 } });
+  await icon.png().toFile(fileURLToPath(new URL(`icons/icon${size}.png`, extension)));
 }
 
 const notices = [];
@@ -34,4 +35,5 @@ await copyFile(new URL("README.md", root), new URL("설치방법.md", extension)
 await copyFile(new URL("LICENSE", root), new URL("LICENSE.txt", extension));
 await copyFile(new URL("NOTICE", root), new URL("NOTICE.txt", extension));
 await copyFile(new URL("SOURCE.md", root), new URL("SOURCE.md", extension));
+await writeFile(new URL("PRIVACY.txt", extension), `\uFEFF${await readFile(new URL("PRIVACY.md", root), "utf8")}`);
 console.log("바로 QR 빌드 완료: extension 폴더를 브라우저에 로드하세요.");

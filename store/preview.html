@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>바로 QR · 스토어 이미지 미리보기</title>
+    <link rel="stylesheet" href="preview.css">
+    <script src="preview.js" defer></script>
+  </head>
+  <body>
+    <main class="screenshot">
+      <header class="masthead">
+        <div class="brand"><img src="../assets/icon.svg" alt="" width="40" height="40"><span>바로 <strong>QR</strong></span></div>
+        <span class="eyebrow">웹사이트를 나누는 가장 간단한 순간</span>
+      </header>
+      <div class="layout">
+        <section class="copy">
+          <span id="category" class="category"></span>
+          <h1 id="headline"></h1>
+          <p id="description" class="description"></p>
+          <ul id="features" class="features"></ul>
+          <p class="privacy">QR 생성과 이미지 읽기, 모두 기기 안에서.</p>
+          <div class="pagination"><span id="page-number"></span><span class="rule"></span><span>바로 QR</span></div>
+        </section>
+        <section class="app-preview" aria-label="실제 확장 프로그램 화면">
+          <iframe id="extension-preview" title="바로 QR 확장 프로그램" width="380" height="600"></iframe>
+        </section>
+      </div>
+    </main>
+    <main class="promo" hidden>
+      <div class="promo-brand"><img src="../assets/icon.svg" alt="" width="56" height="56"><span>바로 <strong>QR</strong></span></div>
+      <h1>웹사이트를<br>바로, QR로.</h1>
+      <p>만들고 · 복사하고 · 읽고</p>
+    </main>
+  </body>
+</html>

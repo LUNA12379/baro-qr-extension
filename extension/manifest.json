@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "바로 QR — 웹사이트 즉석 QR 생성기",
   "short_name": "바로 QR",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "웹사이트와 링크를 QR코드로 만들고, 이미지를 복사하거나 QR 사진을 읽으세요. 모든 처리는 기기 안에서 진행됩니다.",
   "permissions": ["activeTab", "contextMenus"],
   "background": {
