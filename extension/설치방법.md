@@ -2,7 +2,7 @@
 
 현재 웹사이트를 클릭 한 번으로 QR코드로 바꾸는 Chrome / Edge 확장 프로그램입니다.
 
-[설치용 ZIP 다운로드](https://github.com/LUNA12379/baro-qr-extension/releases/latest/download/BaroQR.zip) · [릴리스](https://github.com/LUNA12379/baro-qr-extension/releases)
+[Chrome 웹스토어에서 설치](https://chromewebstore.google.com/detail/geiejbjijpfomnicppkbiephpnnnobej) · [수동 설치용 ZIP 다운로드](https://github.com/LUNA12379/baro-qr-extension/releases/latest/download/BaroQR.zip) · [릴리스](https://github.com/LUNA12379/baro-qr-extension/releases)
 
 Windows와 macOS의 데스크톱 Chrome / Edge에서 사용할 수 있습니다. QR 생성, 이미지·주소 복사, 1024 × 1024 PNG 저장, 링크 우클릭 생성, QR 이미지 읽기를 지원합니다. 주소와 이미지는 외부 서버로 전송하지 않습니다.
 
@@ -11,6 +11,21 @@ Windows와 macOS의 데스크톱 Chrome / Edge에서 사용할 수 있습니다.
 
 ## 설치
 
+### Chrome 웹스토어 설치 (권장)
+
+1. Chrome에서 [바로 QR 스토어 페이지](https://chromewebstore.google.com/detail/geiejbjijpfomnicppkbiephpnnnobej)를 엽니다.
+2. **Chrome에 추가 → 확장 프로그램 추가**를 누릅니다.
+3. 브라우저 오른쪽 위 **퍼즐 모양 확장 프로그램 아이콘**을 누르고, **바로 QR** 옆의 **핀 아이콘**을 눌러 도구 모음에 고정합니다.
+4. QR코드로 만들 웹사이트에서 도구 모음의 **바로 QR 아이콘**을 누릅니다.
+
+스토어 설치본은 새 버전이 심사를 통과해 출시되면 Chrome이 자동으로 업데이트합니다.
+
+### 기존 개발자 모드 설치본에서 전환
+
+기존 ZIP으로 설치한 버전은 스토어 버전으로 자동 전환되지 않습니다. `chrome://extensions`에서 기존 **바로 QR**을 끄거나 삭제한 뒤 위의 스토어 설치를 진행하세요. 두 버전을 동시에 켜면 아이콘과 우클릭 메뉴가 중복될 수 있습니다.
+
+### ZIP 수동 설치 (개발·테스트용)
+
 1. [최신 릴리스](https://github.com/LUNA12379/baro-qr-extension/releases/latest)에서 `BaroQR.zip`을 다운로드하고 압축을 풉니다.
 2. Chrome 주소창에 `chrome://extensions`를 입력합니다. Edge에서는 `edge://extensions`를 입력합니다.
 3. **개발자 모드**를 켭니다.
@@ -18,7 +33,7 @@ Windows와 macOS의 데스크톱 Chrome / Edge에서 사용할 수 있습니다.
 5. `manifest.json`이 있는 폴더를 선택합니다. 이 소스 프로젝트에서는 `extension` 폴더입니다.
 6. 브라우저 오른쪽 위 퍼즐 아이콘을 눌러 **바로 QR**을 도구 모음에 고정합니다.
 
-설치한 폴더를 이동하거나 지우면 확장 프로그램이 작동하지 않습니다. 웹스토어 등록 없이 로컬에서 사용하는 버전입니다.
+수동 설치본은 설치한 폴더를 이동하거나 지우면 작동하지 않으며, 자동 업데이트가 적용되지 않습니다.
 
 GitHub의 **Code → Download ZIP**으로 소스 전체를 받았다면, 압축을 푼 프로젝트 안의 `extension` 폴더를 선택하세요. 빌드된 파일이 포함되어 있어 별도 빌드 없이 설치할 수 있습니다.
 
@@ -57,9 +72,9 @@ QR코드 생성과 이미지 읽기는 브라우저 안에서 처리됩니다. �
 
 ## 웹스토어 및 자동 업데이트
 
-Chrome 웹스토어 등록 자료는 [`store/`](https://github.com/LUNA12379/baro-qr-extension/tree/main/store)에 있습니다. 아직 스토어 출시를 완료한 상태는 아닙니다. 개발자 모드 설치본에는 자동 업데이트가 적용되지 않습니다.
+바로 QR은 2026년 10월 29일 Chrome 웹스토어에 출시되었습니다. [스토어에서 설치](https://chromewebstore.google.com/detail/geiejbjijpfomnicppkbiephpnnnobej)할 수 있으며, 등록 자료는 [`store/`](https://github.com/LUNA12379/baro-qr-extension/tree/main/store)에 있습니다.
 
-스토어 심사 통과·출시 후 스토어에서 설치한 버전은 새 버전이 같은 항목으로 배포되면 Chrome이 자동으로 업데이트합니다. 기존 개발자 모드 설치본은 스토어 설치본으로 한 번 전환해야 합니다. GitHub 릴리스만 게시하는 것으로는 자동 갱신되지 않습니다.
+스토어에서 설치한 버전은 새 버전이 같은 항목으로 출시되면 Chrome이 자동으로 업데이트합니다. 기존 개발자 모드 설치본은 위의 설치 안내에 따라 스토어 설치본으로 한 번 전환해야 합니다. GitHub 릴리스만 게시하는 것으로는 자동 갱신되지 않습니다.
 
 ## 소스에서 다시 빌드
 
