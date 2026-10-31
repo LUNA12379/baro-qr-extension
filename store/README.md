@@ -1,6 +1,6 @@
 # Chrome 웹스토어 등록 자료
 
-대상 버전: **1.1.1** · 준비일: **2026-10-24**
+대상 버전: **1.2.0** · 준비일: **2026-11-01**
 
 바로 QR은 **2026-10-29** Chrome 웹스토어에 공개 출시되었습니다. [스토어에서 설치](https://chromewebstore.google.com/detail/geiejbjijpfomnicppkbiephpnnnobej)할 수 있습니다. 스토어 항목 ID는 `geiejbjijpfomnicppkbiephpnnnobej`입니다.
 
@@ -8,8 +8,10 @@
 
 ## 준비 파일
 
-- `BaroQR-v1.1.1.zip`: 대시보드의 확장 패키지 업로드용. 다운로드 폴더의 제출 묶음에 제공됩니다. manifest.json이 ZIP 최상위에 있습니다.
+- `BaroQR-v1.2.0.zip`: 대시보드의 확장 패키지 업로드용. manifest.json이 ZIP 최상위에 있습니다.
 - `listing-ko.md`: 이름, 설명, 홈페이지·지원 URL
+- `listing-en.md`: 영어 이름, 설명, 홈페이지·지원 URL
+- `assets/en/`: 영어 화면과 문구를 사용한 1280 × 800 스크린샷
 - `privacy-fields.md`: 단일 목적, 권한 사용 이유, 원격 코드 및 데이터 사용 신고 초안
 - `reviewer-notes.md`: 로그인 없이 재현 가능한 한국어·영어 테스트 안내
 - `assets/icon128.png`: 128 × 128 PNG, 96 × 96 그림에 16px 투명 여백
@@ -21,7 +23,7 @@
 
 1. [Chrome 웹스토어 개발자 대시보드](https://chrome.google.com/webstore/devconsole)에 게시할 Google 계정으로 로그인합니다. 기존 개발자 등록 여부를 확인하고, 필요하면 계정 소유자가 약관·등록비·이메일 인증·보안 설정을 직접 처리합니다. 게시자 연락처와 사업자/비사업자 여부는 실제 상태에 맞게 입력해야 하며 이 자료에서 임의로 정하지 않습니다.
 2. 기존 바로 QR 항목(`geiejbjijpfomnicppkbiephpnnnobej`)을 열고 해당 버전의 확장 프로그램 ZIP만 업로드합니다. 새 항목을 만들거나 제출 묶음 전체 ZIP·소스 ZIP을 올리지 않습니다.
-3. `listing-ko.md`의 설명과 링크, `assets/`의 아이콘·스크린샷을 입력합니다. 기본 언어는 한국어로 선택합니다.
+3. 언어 선택에서 한국어에는 `listing-ko.md`, 영어에는 `listing-en.md`의 설명을 입력합니다. 영어 스크린샷은 `assets/en/`에 있습니다. 확장의 기본 대체 언어는 영어이며 한국어 환경에서는 기존 한국어 화면을 유지합니다.
 4. `privacy-fields.md`를 검토하고 실제 코드에 맞게 권한과 데이터 사용을 신고합니다. 개인정보처리방침 URL은 https://github.com/LUNA12379/baro-qr-extension/blob/main/PRIVACY.md 입니다.
 5. 필요하면 심사자 메모에 `reviewer-notes.md`의 테스트 절차를 넣습니다. 로그인이나 테스트 계정이 필요하지 않습니다.
 6. 공개(Public) 또는 링크 공개(Unlisted), 배포 국가를 계정 소유자가 확인합니다. 스토어의 최종 미리보기와 모든 필수 입력란을 검토한 뒤 심사 제출 여부를 결정합니다.
@@ -35,7 +37,7 @@
 
 ## 이미지 재생성
 
-`preview.html`, `preview.css`, `preview.js`는 스토어 이미지용 레이아웃입니다. 프로젝트 루트를 로컬 서버로 열고 `store/preview.html?view=create`, `?view=link`, `?view=read`는 1280 × 800, `?view=promo`는 440 × 280 화면으로 캡처합니다. 미리보기의 확장 iframe은 `extension/popup.html`과 실제 번들을 사용합니다. 예제 주소는 example.com이며 실제 링크 초기화 경로를 사용합니다. 읽기 화면에는 이 주소를 담은 QR PNG를 넣어 실제 해석 결과가 표시된 후 캡처합니다. 브라우저 확장이 아닌 로컬 미리보기에서는 현재 탭 버튼이 비활성화되며, 캡처 환경에서는 브라우저 API에 예제 탭을 제공해 활성화했습니다. 레이아웃 바깥의 문구는 기능 안내이며 새 기능이나 스토어 승인 상태를 암시하지 않습니다.
+`preview.html`, `preview.css`, `preview.js`는 스토어 이미지용 레이아웃입니다. 프로젝트 루트를 로컬 서버로 열고 `store/preview.html?view=create`, `?view=link`, `?view=read`는 1280 × 800, `?view=promo`는 440 × 280 화면으로 캡처합니다. 영어 이미지는 URL에 `&lang=en`을 추가합니다. 미리보기의 확장 iframe은 `extension/popup.html`과 실제 번들을 사용합니다. 예제 주소는 example.com이며 실제 링크 초기화 경로를 사용합니다. 읽기 화면에는 이 주소를 담은 QR PNG를 넣어 실제 해석 결과가 표시된 후 캡처합니다. 브라우저 확장이 아닌 로컬 미리보기에서는 현재 탭 버튼이 비활성화됩니다. 영어 이미지는 이 상태 그대로 캡처했으며, 기존 한국어 이미지는 브라우저 API에 예제 탭을 제공해 활성화한 상태입니다. 레이아웃 바깥의 문구는 기능 안내입니다.
 
 ## 공식 기준
 

@@ -25,12 +25,65 @@ const views = {
   }
 };
 
+const englishViews = {
+  "create": {
+    "category": "01 / CREATE WEBSITE QR CODES",
+    "headline": "This page.\nOn your phone.",
+    "description": "Open Baro QR to share the current URL.\nCopy the image or save it as a PNG.",
+    "features": [
+      "Create in one click",
+      "Copy images and URLs",
+      "Save 1024px PNGs"
+    ],
+    "url": "https://example.com/",
+    "page": "01 / 03"
+  },
+  "link": {
+    "category": "02 / RIGHT-CLICK ANY LINK",
+    "headline": "A link to share.\nNo extra tab.",
+    "description": "Right-click a link and choose\n“Create QR code with Baro QR.”",
+    "features": [
+      "Link context menu",
+      "Dedicated QR window",
+      "Edit the URL anytime"
+    ],
+    "url": "https://example.com/?source=link",
+    "page": "02 / 03"
+  },
+  "read": {
+    "category": "03 / READ QR IMAGES",
+    "headline": "See what's inside\nbefore you open it.",
+    "description": "Choose, drop, or paste a QR image.\nOpen the decoded link when you're ready.",
+    "features": [
+      "Choose or drop images",
+      "Paste with Ctrl+V / ⌘V",
+      "Review before opening"
+    ],
+    "url": "https://example.com/",
+    "page": "03 / 03"
+  }
+};
+const language = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "ko";
+if (language === "en") {
+  document.documentElement.lang = "en";
+  document.title = "Baro QR · Store screenshots";
+  for (const brand of document.querySelectorAll(".brand-word")) brand.textContent = "Baro";
+  document.querySelector(".eyebrow").textContent = "Share a website in a moment";
+  document.querySelector(".privacy").textContent = "Create and read QR codes. All on your device.";
+  document.querySelector(".pagination-brand").textContent = "Baro QR";
+  document.querySelector(".promo h1").textContent = "Your website.\nOne QR code.";
+  document.querySelector(".promo p").textContent = "Create · Copy · Read";
+  document.querySelector(".app-preview").setAttribute("aria-label", "Actual extension interface");
+  document.querySelector("#extension-preview").title = "Baro QR extension";
+}
+
 const selected = new URLSearchParams(location.search).get("view") ?? "create";
 if (selected === "promo") {
   document.querySelector(".screenshot").hidden = true;
   document.querySelector(".promo").hidden = false;
 } else {
-  const view = views[selected] ?? views.create;
+  const localizedViews = language === "en" ? englishViews : views;
+  const view = localizedViews[selected] ?? localizedViews.create;
   document.querySelector("#category").textContent = view.category;
   document.querySelector("#headline").textContent = view.headline;
   document.querySelector("#description").textContent = view.description;
@@ -41,7 +94,7 @@ if (selected === "promo") {
     document.querySelector("#features").append(item);
   }
   const frame = document.querySelector("#extension-preview");
-  frame.src = `../extension/popup.html#${new URLSearchParams({ link: view.url, sourceTab: "1" })}`;
+  frame.src = `../extension/popup.html?lang=${language}#${new URLSearchParams({ link: view.url, sourceTab: "1" })}`;
   if (selected === "read") {
     frame.addEventListener("load", () => {
       frame.contentDocument.querySelector("#scan-tab").click();

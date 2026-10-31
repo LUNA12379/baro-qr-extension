@@ -1,21 +1,25 @@
+import { translate } from "./i18n.js";
 const menuId = "baro-qr-link";
 
-chrome.runtime.onInstalled.addListener(() => {
+function registerContextMenu() {
   chrome.contextMenus.removeAll(() => {
     if (chrome.runtime.lastError) {
-      console.error("우클릭 메뉴를 준비하지 못했습니다.", chrome.runtime.lastError.message);
+      console.error("Could not prepare the context menu.", chrome.runtime.lastError.message);
       return;
     }
     chrome.contextMenus.create({
       id: menuId,
-      title: "링크를 바로 QR로 만들기",
+      title: translate("contextMenu"),
       contexts: ["link"],
       targetUrlPatterns: ["http://*/*", "https://*/*"]
     }, () => {
-      if (chrome.runtime.lastError) console.error("우클릭 메뉴를 만들지 못했습니다.", chrome.runtime.lastError.message);
+      if (chrome.runtime.lastError) console.error("Could not create the context menu.", chrome.runtime.lastError.message);
     });
   });
-});
+}
+
+chrome.runtime.onInstalled.addListener(registerContextMenu);
+chrome.runtime.onStartup.addListener(registerContextMenu);
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId !== menuId || !info.linkUrl) return;
@@ -31,5 +35,5 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (Number.isInteger(tab?.id) && tab.id >= 0) parameters.set("sourceTab", String(tab.id));
   const url = `${chrome.runtime.getURL("popup.html")}#${parameters}`;
   void chrome.windows.create({ url, type: "popup", width: 410, height: 660, focused: true })
-    .catch(error => { console.error("QR 창을 열지 못했습니다.", error.message); });
+    .catch(error => { console.error("Could not open the QR window.", error.message); });
 });

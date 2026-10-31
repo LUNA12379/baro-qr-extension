@@ -1,3 +1,4 @@
+import { translate } from "./i18n.js";
 import { readQrImage } from "./read-image.js";
 import { readWebsite } from "./url.js";
 
@@ -36,10 +37,10 @@ export function initializeScanner(activate) {
     preview.hidden = true;
     preview.removeAttribute("src");
     placeholder.hidden = false;
-    filename.textContent = file?.name || "붙여넣은 이미지";
+    filename.textContent = file?.name || translate("pastedImage");
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     previewUrl = null;
-    setFeedback("이미지에서 QR코드를 찾고 있어요…");
+    setFeedback(translate("findingQr"));
 
     try {
       const text = await readQrImage(file, scanController.signal);
@@ -52,15 +53,15 @@ export function initializeScanner(activate) {
       resultPanel.hidden = false;
       copyButton.disabled = text.length === 0;
       const website = readWebsite(text);
-      resultType.textContent = website.error ? "텍스트" : "웹사이트";
+      resultType.textContent = website.error ? translate("textType") : translate("websiteType");
       if (!website.error) {
         openLink.href = website.value;
         openLink.hidden = false;
       }
-      setFeedback(text ? "QR코드를 읽었어요. 내용을 확인한 뒤 사용하세요." : "QR코드는 읽었지만 텍스트가 비어 있어요.", "success");
+      setFeedback(text ? translate("decodedSuccess") : translate("decodedEmpty"), "success");
     } catch (error) {
       if (ticket !== revision || error.name === "AbortError") return;
-      setFeedback(error.message || "이미지를 읽지 못했어요. 다시 시도해 주세요.", "error");
+      setFeedback(error.message || translate("readFailed"), "error");
     } finally {
       if (ticket === revision) picker.setAttribute("aria-busy", "false");
     }
@@ -101,12 +102,12 @@ export function initializeScanner(activate) {
     const ticket = revision;
     try {
       await navigator.clipboard.writeText(resultText.value);
-      if (ticket === revision) setFeedback("읽은 내용을 클립보드에 복사했어요.", "success");
+      if (ticket === revision) setFeedback(translate("textCopied"), "success");
     } catch {
       if (ticket !== revision) return;
       resultText.focus();
       resultText.select();
-      setFeedback("선택된 내용을 Ctrl+C 또는 ⌘C로 복사해 주세요.", "error");
+      setFeedback(translate("copyTextManually"), "error");
     }
   });
 

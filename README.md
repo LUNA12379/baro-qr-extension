@@ -1,5 +1,7 @@
 # 바로 QR
 
+[한국어](https://github.com/LUNA12379/baro-qr-extension#readme) · [English](https://github.com/LUNA12379/baro-qr-extension/blob/main/README.en.md)
+
 현재 웹사이트를 클릭 한 번으로 QR코드로 바꾸는 Chrome / Edge 확장 프로그램입니다.
 
 [Chrome 웹스토어에서 설치](https://chromewebstore.google.com/detail/geiejbjijpfomnicppkbiephpnnnobej) · [수동 설치용 ZIP 다운로드](https://github.com/LUNA12379/baro-qr-extension/releases/latest/download/BaroQR.zip) · [릴리스](https://github.com/LUNA12379/baro-qr-extension/releases)
@@ -40,6 +42,10 @@ GitHub의 **Code → Download ZIP**으로 소스 전체를 받았다면, 압축�
 업데이트할 때는 설치한 폴더의 내용을 최신 ZIP의 파일로 교체한 뒤 확장 프로그램 관리 화면에서 **새로고침**을 누릅니다. v1.1.0부터 링크 우클릭 메뉴를 위한 `contextMenus` 권한이 추가됩니다.
 
 ## 사용
+
+### 표시 언어
+
+v1.2.0부터 브라우저 표시 언어에 따라 한국어 또는 영어로 동작합니다. 한국어 이외의 언어에서는 영어를 사용합니다. 확장 이름, 버튼, 우클릭 메뉴, 안내 및 오류 메시지가 함께 번역됩니다. 스토어 설치본에는 v1.2.0의 심사·출시가 완료된 후 적용됩니다.
 
 - 웹사이트를 연 뒤 **바로 QR** 아이콘을 클릭하면 해당 주소의 QR코드가 자동으로 생성됩니다.
 - 휴대폰 기본 카메라로 스캔해서 페이지를 엽니다.

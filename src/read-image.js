@@ -1,22 +1,23 @@
+import { translate } from "./i18n.js";
 export async function readQrImage(file, signal) {
   if (!file || !/^image\/(png|jpeg|webp|gif|bmp|x-ms-bmp)$/i.test(file.type)) {
-    throw new Error("PNG, JPG, WebP, GIF 또는 BMP 이미지를 선택해 주세요.");
+    throw new Error(translate("imageTypeError"));
   }
-  if (file.size > 10 * 1024 * 1024) throw new Error("10MB 이하의 이미지를 선택해 주세요.");
+  if (file.size > 10 * 1024 * 1024) throw new Error(translate("imageSizeError"));
   if (signal.aborted) throw new DOMException("Canceled", "AbortError");
 
   let bitmap;
   try {
     bitmap = await createImageBitmap(file);
   } catch {
-    throw new Error("이미지 파일을 열 수 없어요. 파일이 손상되었는지 확인해 주세요.");
+    throw new Error(translate("imageOpenError"));
   }
 
   let imageData;
   try {
     if (signal.aborted) throw new DOMException("Canceled", "AbortError");
     if (bitmap.width * bitmap.height > 40000000 || Math.max(bitmap.width, bitmap.height) > 12000) {
-      throw new Error("이미지가 너무 커요. QR 부분만 잘라서 다시 넣어 주세요.");
+      throw new Error(translate("imageDimensionsError"));
     }
     const scale = Math.min(1, 2048 / Math.max(bitmap.width, bitmap.height));
     const canvas = document.createElement("canvas");
@@ -41,14 +42,14 @@ export async function readQrImage(file, signal) {
       else resolve(value);
     };
     const abort = () => finish(new DOMException("Canceled", "AbortError"));
-    const timer = setTimeout(() => finish(new Error("읽는 데 시간이 오래 걸려요. QR 부분만 잘라서 다시 시도해 주세요.")), 10000);
+    const timer = setTimeout(() => finish(new Error(translate("imageTimeout"))), 10000);
     signal.addEventListener("abort", abort, { once: true });
     worker.onmessage = ({ data }) => {
-      if (data.error) finish(new Error(data.error));
-      else if (data.text === null) finish(new Error("QR코드를 찾지 못했어요. QR 전체가 선명하게 보이는 이미지를 넣어 주세요."));
+      if (data.error) finish(new Error(translate(data.error)));
+      else if (data.text === null) finish(new Error(translate("qrNotFound")));
       else finish(null, data.text);
     };
-    worker.onerror = () => finish(new Error("QR 읽기를 시작하지 못했어요. 창을 다시 열어 주세요."));
+    worker.onerror = () => finish(new Error(translate("readerUnavailable")));
     if (signal.aborted) {
       abort();
       return;
@@ -56,7 +57,7 @@ export async function readQrImage(file, signal) {
     try {
       worker.postMessage({ pixels: imageData.data.buffer, width: imageData.width, height: imageData.height }, [imageData.data.buffer]);
     } catch {
-      finish(new Error("이미지를 처리하지 못했어요. 다시 시도해 주세요."));
+      finish(new Error(translate("imageProcessError")));
     }
   });
 }

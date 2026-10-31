@@ -1,6 +1,9 @@
+import { localizeDocument, translate } from "./i18n.js";
 import QRCode from "qrcode";
 import { readWebsite } from "./url.js";
 import { initializeScanner } from "./scanner.js";
+
+localizeDocument();
 
 const input = document.querySelector("#url-input");
 const canvas = document.querySelector("#qr-canvas");
@@ -63,10 +66,10 @@ function invalidate() {
   copyImageButton.disabled = true;
   canvas.hidden = true;
   emptyState.hidden = false;
-  copyLabel.textContent = "주소 복사";
+  copyLabel.textContent = translate("copyUrl");
   clearTimeout(copyTimer);
   clearTimeout(imageCopyTimer);
-  copyImageLabel.textContent = "이미지 복사";
+  copyImageLabel.textContent = translate("copyImage");
 }
 
 function showEmpty(message, invalid = false) {
@@ -74,9 +77,9 @@ function showEmpty(message, invalid = false) {
   stage.setAttribute("aria-busy", "false");
   input.setAttribute("aria-invalid", String(invalid));
   emptyMessage.textContent = message;
-  status.textContent = "주소 입력 대기";
-  domain.textContent = "웹사이트를 연결하세요";
-  title.textContent = "주소를 입력하면 QR코드가 나타나요.";
+  status.textContent = translate("waitingUrl");
+  domain.textContent = translate("connectWebsite");
+  title.textContent = translate("enterForQr");
   setFeedback(message, invalid ? "error" : "neutral");
 }
 
@@ -92,7 +95,7 @@ async function render() {
   const ticket = generation;
   stage.setAttribute("aria-busy", "true");
   input.setAttribute("aria-invalid", "false");
-  emptyMessage.textContent = "QR코드를 만들고 있어요…";
+  emptyMessage.textContent = translate("generating");
   try {
     const nextCanvas = document.createElement("canvas");
     await QRCode.toCanvas(nextCanvas, website.value, {
@@ -106,21 +109,21 @@ async function render() {
     canvas.width = nextCanvas.width;
     canvas.height = nextCanvas.height;
     canvas.getContext("2d").drawImage(nextCanvas, 0, 0);
-    canvas.setAttribute("aria-label", `${website.hostname} 웹사이트 QR코드`);
+    canvas.setAttribute("aria-label", translate("qrForWebsite", website.hostname));
     canvas.hidden = false;
     emptyState.hidden = true;
     stage.setAttribute("aria-busy", "false");
     generatedWebsite = website;
     domain.textContent = website.hostname;
-    title.textContent = website.value === activeWebsite?.value && activeTitle ? activeTitle : "휴대폰 카메라로 스캔해 주세요.";
-    status.textContent = "스캔 준비 완료";
+    title.textContent = website.value === activeWebsite?.value && activeTitle ? activeTitle : translate("scanWithPhone");
+    status.textContent = translate("readyToScan");
     saveButton.disabled = false;
     copyButton.disabled = false;
     copyImageButton.disabled = false;
-    setFeedback("주소를 바꾸면 QR코드도 바로 바뀌어요.");
+    setFeedback(translate("editUrlHint"));
   } catch {
     if (ticket !== generation) return;
-    showEmpty("QR코드를 만들지 못했어요. 주소를 줄여서 다시 시도해 주세요.", true);
+    showEmpty(translate("generateFailed"), true);
   }
 }
 
@@ -130,11 +133,11 @@ input.addEventListener("input", () => {
   invalidate();
   stage.setAttribute("aria-busy", "true");
   input.setAttribute("aria-invalid", "false");
-  emptyMessage.textContent = "QR코드를 업데이트하고 있어요…";
-  domain.textContent = "주소 확인 중";
-  title.textContent = "잠시만 기다려 주세요.";
-  status.textContent = "업데이트 중";
-  setFeedback("주소를 확인하고 있어요.");
+  emptyMessage.textContent = translate("updatingQr");
+  domain.textContent = translate("checkingUrl");
+  title.textContent = translate("pleaseWait");
+  status.textContent = translate("updating");
+  setFeedback(translate("checkingUrlFeedback"));
   renderTimer = setTimeout(render, 160);
 });
 
@@ -161,9 +164,9 @@ saveButton.addEventListener("click", () => {
     document.body.append(link);
     link.click();
     link.remove();
-    setFeedback("PNG 다운로드를 요청했어요. 다운로드 목록을 확인해 주세요.", "success");
+    setFeedback(translate("pngRequested"), "success");
   } catch {
-    setFeedback("PNG를 저장하지 못했어요. 다시 시도해 주세요.", "error");
+    setFeedback(translate("pngFailed"), "error");
   }
 });
 
@@ -174,15 +177,15 @@ copyButton.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(value);
     if (ticket !== generation) return;
-    copyLabel.textContent = "복사 완료";
-    setFeedback("주소를 클립보드에 복사했어요.", "success");
+    copyLabel.textContent = translate("copied");
+    setFeedback(translate("urlCopied"), "success");
     clearTimeout(copyTimer);
-    copyTimer = setTimeout(() => { copyLabel.textContent = "주소 복사"; }, 1800);
+    copyTimer = setTimeout(() => { copyLabel.textContent = translate("copyUrl"); }, 1800);
   } catch {
     if (ticket !== generation) return;
     input.focus();
     input.select();
-    setFeedback("선택된 주소를 Ctrl+C 또는 ⌘C로 복사해 주세요.", "error");
+    setFeedback(translate("copyUrlManually"), "error");
   }
 });
 
@@ -199,13 +202,13 @@ copyImageButton.addEventListener("click", async () => {
     });
     await navigator.clipboard.write([new ClipboardItem({ "image/png": png })]);
     if (ticket !== generation) return;
-    copyImageLabel.textContent = "복사 완료";
-    setFeedback("QR 이미지를 복사했어요. 메신저나 문서에 붙여 넣으세요.", "success");
+    copyImageLabel.textContent = translate("copied");
+    setFeedback(translate("imageCopied"), "success");
     clearTimeout(imageCopyTimer);
-    imageCopyTimer = setTimeout(() => { copyImageLabel.textContent = "이미지 복사"; }, 1800);
+    imageCopyTimer = setTimeout(() => { copyImageLabel.textContent = translate("copyImage"); }, 1800);
   } catch {
     if (ticket !== generation) return;
-    setFeedback("이미지 복사가 제한돼 있어요. PNG 저장을 이용해 주세요.", "error");
+    setFeedback(translate("copyImageFailed"), "error");
   }
 });
 
@@ -215,12 +218,12 @@ async function initialize() {
   const sourceTab = parameters.get("sourceTab");
   if (linkedUrl !== null) {
     document.body.classList.add("standalone");
-    history.replaceState(null, "", location.pathname);
+    history.replaceState(null, "", `${location.pathname}${location.search}`);
     input.value = linkedUrl;
     await render();
   }
   if (!globalThis.chrome?.tabs?.query) {
-    if (linkedUrl === null) showEmpty("웹사이트 주소를 붙여 넣어 QR코드를 만들어 보세요.");
+    if (linkedUrl === null) showEmpty(translate("pasteWebsite"));
     return;
   }
 
@@ -230,7 +233,7 @@ async function initialize() {
       : (await chrome.tabs.query({ active: true, currentWindow: true }))[0];
     const website = readWebsite(tab?.url ?? "");
     if (website.error) {
-      if (!edited && linkedUrl === null) showEmpty("이 탭의 주소를 읽을 수 없어요. 웹사이트 주소를 직접 입력해 주세요.");
+      if (!edited && linkedUrl === null) showEmpty(translate("unavailableTab"));
       return;
     }
     activeWebsite = website;
@@ -241,7 +244,7 @@ async function initialize() {
       await render();
     }
   } catch {
-    if (!edited && linkedUrl === null) showEmpty("탭 주소를 불러오지 못했어요. 주소를 직접 입력해 주세요.");
+    if (!edited && linkedUrl === null) showEmpty(translate("tabFailed"));
   }
 }
 

@@ -1,0 +1,281 @@
+{
+  "extensionName": {
+    "message": "Baro QR — QR Code Generator & Reader"
+  },
+  "appName": {
+    "message": "Baro QR"
+  },
+  "brandWord": {
+    "message": "Baro"
+  },
+  "extensionDescription": {
+    "message": "Create QR codes for websites and links, copy or save QR images, and read QR codes from images. Everything stays on your device."
+  },
+  "actionTitle": {
+    "message": "Create a QR code for this page"
+  },
+  "contextMenu": {
+    "message": "Create QR code with Baro QR"
+  },
+  "localOnly": {
+    "message": "On-device only"
+  },
+  "qrFeatures": {
+    "message": "QR tools"
+  },
+  "createTab": {
+    "message": "Create QR"
+  },
+  "scanTab": {
+    "message": "Read QR image"
+  },
+  "createHeading": {
+    "message": "This page. On your phone."
+  },
+  "qrCardLabel": {
+    "message": "Generated QR code"
+  },
+  "qrCanvasLabel": {
+    "message": "Website QR code"
+  },
+  "loadingPage": {
+    "message": "Loading the page URL…"
+  },
+  "preparing": {
+    "message": "Getting ready"
+  },
+  "connectWebsite": {
+    "message": "Add a website"
+  },
+  "enterForQr": {
+    "message": "Enter a URL to create its QR code."
+  },
+  "pageUrl": {
+    "message": "Page URL"
+  },
+  "currentTab": {
+    "message": "Current tab"
+  },
+  "loadingUrl": {
+    "message": "Loading the URL."
+  },
+  "copyImage": {
+    "message": "Copy image"
+  },
+  "savePng": {
+    "message": "Save PNG"
+  },
+  "copyUrl": {
+    "message": "Copy URL"
+  },
+  "scanHeading": {
+    "message": "Read a QR code from an image."
+  },
+  "selectedImage": {
+    "message": "Selected QR image"
+  },
+  "dropImage": {
+    "message": "Choose or drop an image"
+  },
+  "pasteHint": {
+    "message": "Or paste with Ctrl+V · ⌘V on Mac"
+  },
+  "chooseImage": {
+    "message": "Choose image"
+  },
+  "imageFormats": {
+    "message": "PNG · JPG · WebP · GIF · BMP / up to 10 MB"
+  },
+  "clearQrHint": {
+    "message": "Use an image with one clearly visible QR code."
+  },
+  "imagePrivacy": {
+    "message": "Your images are never uploaded or stored."
+  },
+  "decodedContent": {
+    "message": "Decoded content"
+  },
+  "copyText": {
+    "message": "Copy text"
+  },
+  "openLink": {
+    "message": "Open link ↗"
+  },
+  "privacyNote": {
+    "message": "No uploads. No history."
+  },
+  "privacyLink": {
+    "message": "Privacy"
+  },
+  "waitingUrl": {
+    "message": "Enter a URL"
+  },
+  "generating": {
+    "message": "Creating your QR code…"
+  },
+  "scanWithPhone": {
+    "message": "Scan with your phone's camera."
+  },
+  "readyToScan": {
+    "message": "Ready to scan"
+  },
+  "editUrlHint": {
+    "message": "Edit the URL to update the QR code."
+  },
+  "generateFailed": {
+    "message": "Could not create a QR code. Try a shorter URL."
+  },
+  "updatingQr": {
+    "message": "Updating your QR code…"
+  },
+  "checkingUrl": {
+    "message": "Checking URL"
+  },
+  "pleaseWait": {
+    "message": "Please wait a moment."
+  },
+  "updating": {
+    "message": "Updating"
+  },
+  "checkingUrlFeedback": {
+    "message": "Checking the URL."
+  },
+  "pngRequested": {
+    "message": "PNG download started. Check your downloads."
+  },
+  "pngFailed": {
+    "message": "Could not save the PNG. Please try again."
+  },
+  "copied": {
+    "message": "Copied"
+  },
+  "urlCopied": {
+    "message": "URL copied to your clipboard."
+  },
+  "copyUrlManually": {
+    "message": "Copy the selected URL with Ctrl+C or ⌘C."
+  },
+  "imageCopied": {
+    "message": "QR image copied. Paste it into a chat or document."
+  },
+  "copyImageFailed": {
+    "message": "Could not copy the image. Use Save PNG instead."
+  },
+  "pasteWebsite": {
+    "message": "Paste a website URL to create a QR code."
+  },
+  "unavailableTab": {
+    "message": "This tab's URL is unavailable. Enter a website URL instead."
+  },
+  "tabFailed": {
+    "message": "Could not load the tab's URL. Enter a URL instead."
+  },
+  "enterWebsite": {
+    "message": "Enter a website URL to create its QR code."
+  },
+  "fullUrlRequired": {
+    "message": "Enter the full URL, starting with https://."
+  },
+  "httpOnly": {
+    "message": "Only HTTP and HTTPS website URLs are supported."
+  },
+  "invalidUrl": {
+    "message": "Check the URL for spaces and a valid https:// prefix."
+  },
+  "urlTooLong": {
+    "message": "This URL is too long. Keep it within 2,300 bytes."
+  },
+  "pastedImage": {
+    "message": "Pasted image"
+  },
+  "findingQr": {
+    "message": "Looking for a QR code in the image…"
+  },
+  "textType": {
+    "message": "Text"
+  },
+  "websiteType": {
+    "message": "Website"
+  },
+  "decodedSuccess": {
+    "message": "QR code read. Check the content before using it."
+  },
+  "decodedEmpty": {
+    "message": "The QR code was read, but it contains no text."
+  },
+  "readFailed": {
+    "message": "Could not read the image. Please try again."
+  },
+  "textCopied": {
+    "message": "Decoded content copied to your clipboard."
+  },
+  "copyTextManually": {
+    "message": "Copy the selected content with Ctrl+C or ⌘C."
+  },
+  "imageTypeError": {
+    "message": "Choose a PNG, JPG, WebP, GIF, or BMP image."
+  },
+  "imageSizeError": {
+    "message": "Choose an image no larger than 10 MB."
+  },
+  "imageOpenError": {
+    "message": "Could not open the image. Check that the file is not damaged."
+  },
+  "imageDimensionsError": {
+    "message": "This image is too large. Crop it to the QR code and try again."
+  },
+  "imageTimeout": {
+    "message": "Reading took too long. Crop the image to the QR code and try again."
+  },
+  "qrNotFound": {
+    "message": "No QR code found. Use a clear image showing the entire QR code."
+  },
+  "readerUnavailable": {
+    "message": "Could not start the QR reader. Close and reopen this window."
+  },
+  "imageProcessError": {
+    "message": "Could not process the image. Please try again."
+  },
+  "imageAnalysisFailed": {
+    "message": "Could not analyze the image. Try another image."
+  },
+  "licenseTitle": {
+    "message": "Baro QR — License and Source"
+  },
+  "licenseIntro": {
+    "message": "This program is free software licensed under the GNU General Public License, version 3 only. You may use, modify, and redistribute it under the license terms."
+  },
+  "licenseWarranty": {
+    "message": "This program comes with no warranty, including any implied warranty of merchantability or fitness for a particular purpose. See the full license for details."
+  },
+  "licenseFull": {
+    "message": "Full GPL-3.0 license"
+  },
+  "projectNotices": {
+    "message": "Project copyright and license notices"
+  },
+  "thirdPartyNotices": {
+    "message": "Third-party MIT and Apache-2.0 licenses and copyright notices"
+  },
+  "sourceDownload": {
+    "message": "Download the complete source ZIP"
+  },
+  "sourceGuide": {
+    "message": "Source code, build, and installation guide"
+  },
+  "sourceContents": {
+    "message": "The complete source ZIP includes the program source, build scripts, dependency lockfile, and original source for the bundled libraries."
+  },
+  "licenseCommercial": {
+    "message": "Commercial use is allowed. Distributing modified versions requires compliance with GPL-3.0, including its source availability and same-license requirements."
+  },
+  "qrForWebsite": {
+    "message": "QR code for $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  }
+}

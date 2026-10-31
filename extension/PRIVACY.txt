@@ -1,5 +1,7 @@
 ﻿# 바로 QR 개인정보처리방침
 
+[한국어](#바로-qr-개인정보처리방침) · [English](#english)
+
 시행일: 2026년 10월 24일 · 운영자: LUNA12379
 
 이 방침은 「바로 QR — 웹사이트 즉석 QR 생성기」 Chrome / Edge 확장 프로그램에 적용됩니다. 바로 QR의 목적은 웹사이트 주소를 QR코드로 공유하고, 사용자가 제공한 QR 이미지의 내용을 기기 안에서 읽는 것입니다.
@@ -47,3 +49,59 @@ GitHub 이슈는 공개됩니다. 민감한 URL, QR 이미지, 인증 코드 또
 ## 7. 변경 안내
 
 기능이나 데이터 처리 방식이 바뀌면 이 방침과 시행일을 갱신합니다. 처리 범위가 달라지는 경우 관련 스토어 설명과 권한 안내도 함께 갱신합니다.
+
+---
+
+## English
+
+# Baro QR Privacy Policy
+
+Effective date: October 24, 2026 · Operator: LUNA12379
+
+English translation added November 1, 2026. This translation does not change the extension's data handling.
+
+This policy applies to the Baro QR Chrome / Edge extension. Baro QR lets you share website URLs as QR codes and read the content of QR images you provide, on your device.
+
+### 1. Information processed on your device
+
+- The URL and title of the tab where you click the extension icon, to generate and display its QR code.
+- The URL of a link you right-click and information about the originating tab, to display the link's QR code and let you return to the original page URL.
+- URLs you type, to generate QR codes.
+- Images you select, drop, or paste, their filenames, and decoded QR content, to show a preview, read the QR code, display results, and support copying.
+
+This information is processed in browser memory while you use the feature. URLs and QR codes may contain personal information; review them before sharing. The extension does not continuously monitor other tabs or collect your full browsing history, page contents, cookies, account information, or other files on your device.
+
+### 2. External transmission and third parties
+
+QR generation and image reading do not send URLs, images, filenames, or decoded content to a developer server or an external QR service. The extension uses no analytics, advertisements, tracking tools, or remotely executed code. The developer cannot access the original data processed by the extension and does not sell or share it.
+
+When you choose “Open link,” your browser visits that website. This is a normal web request initiated by you, and the website's privacy policy applies. When you scan a QR code with your phone or share it in a chat or document, the policies of the apps and websites you choose apply. The extension never opens or executes a decoded URL automatically.
+
+### 3. Storage, retention, and deletion
+
+The extension does not store URL, image, or decoded-result history or user identifiers in local storage, synchronized storage, or on a server. When you close the processing window, it no longer retains that window's processing state or image preview.
+
+Files you save with “Save PNG” remain in your chosen download location. Copied content may remain on the operating system clipboard. You can delete files or replace clipboard content using browser or operating system controls. Clipboard history or synchronization settings may retain copies separately. The extension does not modify or delete original image files.
+
+### 4. Permissions and user actions
+
+- **activeTab**: temporarily reads the URL and title of the tab where you invoke the extension icon or context menu.
+- **contextMenus**: adds “Create QR code with Baro QR” to the context menu for website links.
+- **Clipboard**: writes URLs, QR images, or decoded text only when you click a copy control. It does not automatically inspect the clipboard. Images are accessed only through paste events you initiate.
+- **Files**: reads only images you select, drop, or paste. It does not use the camera or microphone.
+
+### 5. Limited Use
+
+Information obtained through Chrome APIs and data you provide are used only for the QR generation and reading features described above. The extension complies with the Chrome Web Store User Data Policy's Limited Use requirements. It does not use this information for advertising, profiling, creditworthiness assessment, or purposes unrelated to the user-facing features.
+
+### 6. The store, GitHub, and support
+
+Installation, automatic updates, and store reviews are handled by the browser and extension store under their own policies. GitHub's policies apply when you visit its source, documentation, or support pages. These services may independently process information needed to provide their services, such as visits and installations.
+
+Support: https://github.com/LUNA12379/baro-qr-extension/issues
+
+GitHub issues are public. Do not attach sensitive URLs, QR images, authentication codes, or personal information. Issues you voluntarily submit may be stored publicly on GitHub; this is separate from the extension's on-device processing.
+
+### 7. Changes
+
+If features or data handling change, this policy and its effective date will be updated. Changes to the scope of processing will also be reflected in the store description and permission explanations.

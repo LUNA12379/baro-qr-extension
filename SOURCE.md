@@ -1,10 +1,12 @@
 # 해당 버전의 소스 코드
 
-배포 파일 `BaroQR.zip` v1.1.1에 대응하는 소스는 다음 위치에서 무료로 받을 수 있습니다.
+배포 파일 `BaroQR.zip` v1.2.0에 대응하는 소스는 다음 위치에서 무료로 받을 수 있습니다.
 
-- [v1.1.1 릴리스](https://github.com/LUNA12379/baro-qr-extension/releases/tag/v1.1.1)
-- [전체 소스 ZIP](https://github.com/LUNA12379/baro-qr-extension/releases/download/v1.1.1/BaroQR-source-v1.1.1.zip)
-- [v1.1.1 저장소 소스](https://github.com/LUNA12379/baro-qr-extension/tree/v1.1.1)
+- [v1.2.0 릴리스](https://github.com/LUNA12379/baro-qr-extension/releases/tag/v1.2.0)
+- [전체 소스 ZIP / Complete source ZIP](https://github.com/LUNA12379/baro-qr-extension/releases/download/v1.2.0/BaroQR-source-v1.2.0.zip)
+- [v1.2.0 저장소 소스 / Source tree](https://github.com/LUNA12379/baro-qr-extension/tree/v1.2.0)
+
+English: These links provide the corresponding source for Baro QR v1.2.0. The complete source ZIP includes the extension, build scripts, dependency lockfile, documentation, and original source and license notices for the bundled libraries in `vendor-source/`. See [the English build instructions](https://github.com/LUNA12379/baro-qr-extension/blob/v1.2.0/README.en.md#build-from-source).
 
 전체 소스 ZIP에는 확장 프로그램 소스, 빌드 스크립트, 의존성 잠금 파일, 설치 안내 및 실제 번들에 포함된 라이브러리 소스가 `vendor-source/`에 들어 있습니다.
 

@@ -8,7 +8,7 @@ const extension = new URL("extension/", root);
 await mkdir(new URL("icons/", extension), { recursive: true });
 await build({
   absWorkingDir: fileURLToPath(root),
-  entryPoints: ["src/popup.js", "src/background.js", "src/qr-reader.worker.js"],
+  entryPoints: ["src/popup.js", "src/background.js", "src/qr-reader.worker.js", "src/license.js"],
   outdir: "extension",
   bundle: true,
   platform: "browser",
@@ -26,11 +26,17 @@ for (const size of [16, 32, 48, 128]) {
   await icon.png().toFile(fileURLToPath(new URL(`icons/icon${size}.png`, extension)));
 }
 
+for (const language of ["en", "ko"]) {
+  await mkdir(new URL(`_locales/${language}/`, extension), { recursive: true });
+  await copyFile(new URL(`src/locales/${language}.json`, root), new URL(`_locales/${language}/messages.json`, extension));
+}
+
 const notices = [];
 for (const [name, license] of [["qrcode", "license"], ["dijkstrajs", "LICENSE.md"], ["jsqr", "LICENSE"]]) {
   notices.push(`${name}\n${(await readFile(new URL(`node_modules/${name}/${license}`, root), "utf8")).trimEnd()}`);
 }
 await writeFile(new URL("THIRD_PARTY_NOTICES.txt", extension), `${notices.join("\n\n")}\n`);
+await copyFile(new URL("README.en.md", root), new URL("README.en.md", extension));
 await copyFile(new URL("README.md", root), new URL("설치방법.md", extension));
 await copyFile(new URL("LICENSE", root), new URL("LICENSE.txt", extension));
 await copyFile(new URL("NOTICE", root), new URL("NOTICE.txt", extension));
